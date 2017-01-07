@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Temperatura atual</title>
+</head>
+<body bgcolor="0f0">
+
+<p id="valor" style="color: #fff; font-size: 112"></p>
+
+
+<script type="text/javascript">
+	var urlParams;
+	(window.onpopstate = function () {
+	    var match,
+	        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+	        search = /([^&=]+)=?([^&]*)/g,
+	        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+	        query  = window.location.search.substring(1);
+
+	    urlParams = {};
+	    while (match = search.exec(query))
+	       urlParams[decode(match[1])] = decode(match[2]);
+	})();
+
+	document.getElementById("valor").innerText = urlParams["temp"] + " o.C";
+</script>
+
+</body>
+</html>
